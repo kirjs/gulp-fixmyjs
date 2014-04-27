@@ -1,7 +1,8 @@
 # gulp-fixmyjs
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url]  [![Coverage Status][coveralls-image]][coveralls-url] [![Dependency Status][depstat-image]][depstat-url]
 
-> fixmyjs plugin for [gulp](https://github.com/wearefractal/gulp)
+
+> [fixmyjs](https://github.com/jshint/fixmyjs) plugin for [gulp](https://github.com/wearefractal/gulp)
 
 
 ## Project status
@@ -20,22 +21,32 @@ Then, add it to your `gulpfile.js`:
 ```javascript
 var fixmyjs = require("gulp-fixmyjs");
 
-gulp.src("./src/*.ext")
+gulp.src("./src/*.js")
 	.pipe(fixmyjs({
 		msg: "Hello Gulp!"
 	}))
-	.pipe(gulp.dest("./dist"));
+	.pipe(gulp.dest("./src"));
 ```
 
 ## API
 
 ### fixmyjs(options)
 
-#### options.msg
-Type: `String`  
-Default: `Hello World`
+#### options.legacy
+Type: Boolean
+Default: false
 
-The message you wish to attach to file.
+Enables legacy mode
+
+#### options.lookup
+Type: Boolean
+Default: true
+
+Enables legacy mode
+
+#### JSHint options
+Any of the [JSHint options](http://www.jshint.com/docs/options/) will be passed to fixmyjs, and would get presedence over .jshintrc file
+
 
 
 ## License
