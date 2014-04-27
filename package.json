@@ -1,9 +1,12 @@
 {
   "name": "gulp-fixmyjs",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A plugin for Gulp",
   "keywords": [
-    "gulpplugin", "fixmyjs", "jshint", "linting"
+    "gulpplugin",
+    "fixmyjs",
+    "jshint",
+    "linting"
   ],
   "author": {
     "name": "",
