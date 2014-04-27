@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "A plugin for Gulp",
   "keywords": [
-    "gulpplugin"
+    "gulpplugin", "fixmyjs", "jshint", "linting"
   ],
   "author": {
     "name": "",
