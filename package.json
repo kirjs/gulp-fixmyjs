@@ -23,7 +23,8 @@
     "through2": "*",
     "gulp-util": "~2.2.0",
     "fixmyjs": "~0.13.1",
-    "jshint": "~2.5.0"
+    "jshint": "~2.5.0",
+    "rcloader": "~0.1.2"
   },
   "devDependencies": {
     "mocha": "*",
