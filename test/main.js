@@ -122,6 +122,31 @@ describe("gulp-fixmyjs", function () {
 
   });
 
+  it("should error on invalid JS", function (done) {
+
+    var srcFile = new gutil.File({
+      path: "test/fixtures/invalid.js",
+      cwd: "test/",
+      base: "test/fixtures",
+      contents: fs.createReadStream("test/fixtures/invalid.js")
+    });
+
+    var stream = fixmyjs({lookup: false});
+
+    stream.on("error", function (err) {
+      should.exist(err);
+      done();
+    });
+
+    stream.on("data", function (newFile) {
+      newFile.contents.pipe(es.wait(function (err, data) {
+        done(err);
+      }));
+    });
+
+    stream.write(srcFile);
+    stream.end();
+  });
 
   it("should error on stream", function (done) {
 

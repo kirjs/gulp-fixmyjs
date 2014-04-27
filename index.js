@@ -57,10 +57,16 @@ module.exports = function (options) {
         callback();
       }.bind(this);
 
-      if (options.lookup) {
-        rcLoader.for(file.path, fix);
-      } else {
-        fix(null, options);
+      try {
+        if (options.lookup) {
+          rcLoader.for(file.path, fix);
+        } else {
+          fix(null, options);
+        }
+
+      } catch( e ){
+        this.emit("error",
+          new gutil.PluginError("gulp-fixmyjs", "Error when running fixmyjs:", e));
       }
 
 
