@@ -128,11 +128,10 @@ describe("gulp-fixmyjs", function () {
       path: "test/fixtures/invalid.js",
       cwd: "test/",
       base: "test/fixtures",
-      contents: fs.createReadStream("test/fixtures/invalid.js")
+      contents: fs.readFileSync("test/fixtures/invalid.js")
     });
 
     var stream = fixmyjs({lookup: false});
-
     stream.on("error", function (err) {
       should.exist(err);
       done();

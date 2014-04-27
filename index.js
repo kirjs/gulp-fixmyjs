@@ -52,21 +52,20 @@ module.exports = function (options) {
 
     if (file.isBuffer()) {
       var fix = function (err, config) {
-        file.contents = new Buffer(fixJS(String(file.contents), config));
-        this.push(file);
-        callback();
+        try {
+          file.contents = new Buffer(fixJS(String(file.contents), config));
+          this.push(file);
+        } catch (e) {
+          this.emit("error", new gutil.PluginError("gulp-fixmyjs", "Error when running fixmyjs:", e));
+        }
+        return callback();
       }.bind(this);
 
-      try {
-        if (options.lookup) {
-          rcLoader.for(file.path, fix);
-        } else {
-          fix(null, options);
-        }
 
-      } catch( e ){
-        this.emit("error",
-          new gutil.PluginError("gulp-fixmyjs", "Error when running fixmyjs:", e));
+      if (options.lookup) {
+        rcLoader.for(file.path, fix);
+      } else {
+        fix(null, options);
       }
 
 
