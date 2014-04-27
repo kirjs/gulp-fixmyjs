@@ -4,7 +4,6 @@
 
 > [fixmyjs](https://github.com/jshint/fixmyjs) plugin for [gulp](https://github.com/wearefractal/gulp)
 
-
 ## Project status
 This project is a work-in-progress, and could be buggy.
 
@@ -23,7 +22,7 @@ var fixmyjs = require("gulp-fixmyjs");
 
 gulp.src("./src/*.js")
 	.pipe(fixmyjs({
-		msg: "Hello Gulp!"
+		// JSHint settings here
 	}))
 	.pipe(gulp.dest("./src"));
 ```
@@ -43,7 +42,7 @@ Type: **Boolean**, Default: true
 Enables looking up the .jshintrc configuration file
 
 #### JSHint options
-Any of the [JSHint options](http://www.jshint.com/docs/options/) will be passed to fixmyjs, and would get presedence over .jshintrc file
+Any of the [JSHint options](http://www.jshint.com/docs/options/) will be passed to fixmyjs, and would get precedence over .jshintrc file
 
 
 
