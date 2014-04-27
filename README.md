@@ -33,16 +33,14 @@ gulp.src("./src/*.js")
 ### fixmyjs(options)
 
 #### options.legacy
-Type: Boolean
-Default: false
+Type: **Boolean**, Default: false
 
 Enables legacy mode
 
 #### options.lookup
-Type: Boolean
-Default: true
+Type: **Boolean**, Default: true
 
-Enables legacy mode
+Enables looking up the .jshintrc configuration file
 
 #### JSHint options
 Any of the [JSHint options](http://www.jshint.com/docs/options/) will be passed to fixmyjs, and would get presedence over .jshintrc file
