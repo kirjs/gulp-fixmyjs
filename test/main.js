@@ -12,7 +12,7 @@ delete require.cache[require.resolve("../")];
 var gutil = require("gulp-util"),
     fixmyjs = require("../");
 
-describe("gulp-fixmyjs", function() {
+describe("gulp-fixmyjs", function () {
 
     var expectedFile = new gutil.File({
         path: "test/expected/after.js",
@@ -21,7 +21,7 @@ describe("gulp-fixmyjs", function() {
         contents: fs.readFileSync("test/expected/after.js")
     });
 
-    it("should produce expected file via buffer", function(done) {
+    it("should produce expected file via buffer", function (done) {
 
         var srcFile = new gutil.File({
             path: "test/fixtures/before.js",
@@ -30,14 +30,14 @@ describe("gulp-fixmyjs", function() {
             contents: fs.readFileSync("test/fixtures/before.js")
         });
 
-        var stream = fixmyjs("World");
+        var stream = fixmyjs({lookup: false});
 
-        stream.on("error", function(err) {
+        stream.on("error", function (err) {
             should.exist(err);
             done(err);
         });
 
-        stream.on("data", function(newFile) {
+        stream.on("data", function (newFile) {
 
             should.exist(newFile);
             should.exist(newFile.contents);
@@ -50,7 +50,81 @@ describe("gulp-fixmyjs", function() {
         stream.end();
     });
 
-    it("should error on stream", function(done) {
+
+    describe("handling js hint parameters", function(){
+
+        it("Doesn't not replace == to === if eqeqeq is false", function (done) {
+            var expectedFileNoEqEqEq = new gutil.File({
+                path: "test/expected/afterNoEqEqEq.js",
+                cwd: "test/",
+                base: "test/expected",
+                contents: fs.readFileSync("test/expected/afterNoEqEqEq.js")
+            });
+
+            var srcFile = new gutil.File({
+                path: "test/fixtures/before.js",
+                cwd: "test/",
+                base: "test/fixtures",
+                contents: fs.readFileSync("test/fixtures/before.js")
+            });
+
+            var stream = fixmyjs({lookup: false, eqeqeq: false});
+
+            stream.on("error", function (err) {
+                should.exist(err);
+                done(err);
+            });
+
+            stream.on("data", function (newFile) {
+
+                should.exist(newFile);
+                should.exist(newFile.contents);
+
+                String(newFile.contents).should.equal(String(expectedFileNoEqEqEq.contents));
+                done();
+            });
+
+            stream.write(srcFile);
+            stream.end();
+        });
+        it("Does replace == to === if eqeqeq is true", function (done) {
+            var expectedFileEqEqEq = new gutil.File({
+                path: "test/expected/afterEqEqEq.js",
+                cwd: "test/",
+                base: "test/expected",
+                contents: fs.readFileSync("test/expected/afterEqEqEq.js")
+            });
+
+            var srcFile = new gutil.File({
+                path: "test/fixtures/before.js",
+                cwd: "test/",
+                base: "test/fixtures",
+                contents: fs.readFileSync("test/fixtures/before.js")
+            });
+
+            var stream = fixmyjs({lookup: false, eqeqeq: true});
+
+            stream.on("error", function (err) {
+                should.exist(err);
+                done(err);
+            });
+
+            stream.on("data", function (newFile) {
+                should.exist(newFile);
+                should.exist(newFile.contents);
+                String(newFile.contents).should.equal(String(expectedFileEqEqEq.contents));
+                done();
+            });
+
+            stream.write(srcFile);
+            stream.end();
+        });
+
+    });
+
+
+
+    it("should error on stream", function (done) {
 
         var srcFile = new gutil.File({
             path: "test/fixtures/before.js",
@@ -59,15 +133,15 @@ describe("gulp-fixmyjs", function() {
             contents: fs.createReadStream("test/fixtures/before.js")
         });
 
-        var stream = fixmyjs("World");
+        var stream = fixmyjs({lookup: false});
 
-        stream.on("error", function(err) {
+        stream.on("error", function (err) {
             should.exist(err);
             done();
         });
 
-        stream.on("data", function(newFile) {
-            newFile.contents.pipe(es.wait(function(err, data) {
+        stream.on("data", function (newFile) {
+            newFile.contents.pipe(es.wait(function (err, data) {
                 done(err);
             }));
         });

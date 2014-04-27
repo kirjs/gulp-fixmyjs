@@ -1,14 +1,35 @@
 var through = require("through2"),
     gutil = require("gulp-util"),
-    fixmyjs = require("fixmyjs");
+    fixmyjs = require("fixmyjs"),
+    RcLoader = require('rcloader'),
+    jshint = require('jshint').JSHINT;
 
-module.exports = function(param) {
+module.exports = function (options) {
     "use strict";
 
-    // if necessary check for required param(s), e.g. options hash, etc.
-    if (!param) {
-        throw new gutil.PluginError("gulp-fixmyjs", "No param supplied");
+    options = options || {};
+    if (options.lookup === void 0) {
+        options.lookup = true;
     }
+    if (options.lagacy === void 0) {
+        options.lagacy = false;
+    }
+
+    if (options.lookup) {
+        var rcLoader = new RcLoader('.jshintrc', options, {});
+    }
+
+    var fixJS = function (contents, config) {
+        return fixmyjs.fix(contents, config);
+    };
+
+    if (options.legacy) {
+        fixJS = function (contents, config) {
+            jshint(contents, config);
+            return fixmyjs(jshint.data(), contents, config).run();
+        };
+    }
+
 
     function gulpFixmyjs(file, enc, callback) {
         /*jshint validthis:true*/
@@ -20,19 +41,31 @@ module.exports = function(param) {
             return callback();
         }
 
+
         if (file.isStream()) {
             this.emit("error",
                 new gutil.PluginError("gulp-fixmyjs", "Stream content is not supported"));
             return callback();
         }
 
-        // check if file.contents is a `Buffer`
+
         if (file.isBuffer()) {
-            file.contents = new Buffer(fixmyjs.fix(String(file.contents), {}));
-            this.push(file);
+            var fix = function (err, config) {
+                file.contents = new Buffer(fixJS(String(file.contents), config));
+                this.push(file);
+                callback();
+            }.bind(this);
+
+            if (options.lookup) {
+                rcLoader.for(file.path, fix);
+            } else {
+                fix(null, options);
+            }
+
+
         }
-        return callback();
     }
+
 
     return through.obj(gulpFixmyjs);
 };

@@ -13,12 +13,14 @@
   "repository": "kcherkashin/gulp-fixmyjs",
   "scripts": {
     "test": "istanbul test _mocha --report html -- test/*.js --reporter spec",
+    "test-debug": "node --debug-brk node_modules/.bin/istanbul test _mocha --report html -- test/*.js --reporter spec",
     "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "dependencies": {
     "through2": "*",
     "gulp-util": "~2.2.0",
-    "fixmyjs": "~0.13.1"
+    "fixmyjs": "~0.13.1",
+    "jshint": "~2.5.0"
   },
   "devDependencies": {
     "mocha": "*",

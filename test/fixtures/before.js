@@ -1,2 +1,2 @@
 var x = 1
-var a = Array()
+v == 3
