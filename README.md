@@ -4,9 +4,6 @@
 
 > [fixmyjs](https://github.com/jshint/fixmyjs) plugin for [gulp](https://github.com/wearefractal/gulp)
 
-## Project status
-This project is a work-in-progress, and could be buggy.
-
 ## Usage
 
 First, install `gulp-fixmyjs` as a development dependency:
