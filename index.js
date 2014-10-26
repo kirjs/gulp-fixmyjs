@@ -11,8 +11,8 @@ module.exports = function (options) {
   if (options.lookup === void 0) {
     options.lookup = true;
   }
-  if (options.lagacy === void 0) {
-    options.lagacy = false;
+  if (options.legacy === void 0) {
+    options.legacy = false;
   }
 
   if (options.lookup) {
