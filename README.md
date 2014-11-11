@@ -48,13 +48,13 @@ Any of the [JSHint options](http://www.jshint.com/docs/options/) will be passed 
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
 
 [npm-url]: https://npmjs.org/package/gulp-fixmyjs
-[npm-image]: https://badge.fury.io/js/gulp-fixmyjs.png
+[npm-image]: https://badge.fury.io/js/gulp-fixmyjs.svg
 
-[travis-url]: http://travis-ci.org/kcherkashin/gulp-fixmyjs
-[travis-image]: https://secure.travis-ci.org/kcherkashin/gulp-fixmyjs.png?branch=master
+[travis-url]: http://travis-ci.org/kirjs/gulp-fixmyjs
+[travis-image]: https://secure.travis-ci.org/kirjs/gulp-fixmyjs.svg?branch=master
 
 [coveralls-url]: https://coveralls.io/r/kcherkashin/gulp-fixmyjs
-[coveralls-image]: https://coveralls.io/repos/kcherkashin/gulp-fixmyjs/badge.png
+[coveralls-image]: https://img.shields.io/coveralls/kcherkashin/gulp-fixmyjs.svg
 
-[depstat-url]: https://david-dm.org/kcherkashin/gulp-fixmyjs
-[depstat-image]: https://david-dm.org/kcherkashin/gulp-fixmyjs.png
+[depstat-url]: https://david-dm.org/kirjs/gulp-fixmyjs
+[depstat-image]: https://david-dm.org/kirjs/gulp-fixmyjs.svg
