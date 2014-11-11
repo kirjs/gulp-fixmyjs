@@ -1,7 +1,7 @@
 {
   "name": "gulp-fixmyjs",
   "version": "0.0.9",
-  "description": "A plugin for Gulp",
+  "description": "fixmyjs plugin for gulp",
   "keywords": [
     "gulpplugin",
     "fixmyjs",
@@ -9,11 +9,13 @@
     "linting"
   ],
   "author": {
-    "name": "",
-    "email": "",
-    "url": "https://github.com/kcherkashin"
+    "name": "Kirill Cherkashin",
+    "url": "https://github.com/kirjs"
   },
-  "repository": "kcherkashin/gulp-fixmyjs",
+  "repository": "kirjs/gulp-fixmyjs",
+  "files": [
+    "index.js"
+  ],
   "scripts": {
     "test": "istanbul test _mocha --report html -- test/*.js --reporter spec",
     "test-debug": "node --debug-brk node_modules/.bin/istanbul test _mocha --report html -- test/*.js --reporter spec",
