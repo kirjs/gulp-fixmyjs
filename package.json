@@ -18,8 +18,8 @@
   ],
   "scripts": {
     "test": "istanbul test _mocha --report html -- test/*.js --reporter spec",
-    "test-debug": "node --debug-brk node_modules/.bin/istanbul test _mocha --report html -- test/*.js --reporter spec",
-    "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "test-debug": "node --debug-brk istanbul test _mocha --report html -- test/*.js --reporter spec",
+    "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && istanbul-coveralls"
   },
   "dependencies": {
     "fixmyjs": "~0.13.1",
@@ -32,6 +32,7 @@
     "coveralls": "*",
     "event-stream": "*",
     "istanbul": "*",
+    "istanbul-coveralls": "^1.0.1",
     "mocha": "*",
     "mocha-lcov-reporter": "*",
     "should": "^4.0.4"
