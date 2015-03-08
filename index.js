@@ -32,6 +32,10 @@ module.exports = function (options) {
   }
 
 
+  function error(message) {
+    return new gutil.PluginError("gulp-fixmyjs", message);
+  }
+
   function gulpFixmyjs(file, enc, callback) {
     /*jshint validthis:true*/
 
@@ -44,8 +48,7 @@ module.exports = function (options) {
 
 
     if (file.isStream()) {
-      this.emit("error",
-        new gutil.PluginError("gulp-fixmyjs", "Stream content is not supported"));
+      this.emit("error", error("Stream content is not supported"));
       return callback();
     }
 
@@ -56,7 +59,7 @@ module.exports = function (options) {
           file.contents = new Buffer(fixJS(String(file.contents), config));
           this.push(file);
         } catch (e) {
-          this.emit("error", new gutil.PluginError("gulp-fixmyjs", "Error when running fixmyjs:", e));
+          this.emit("error", error("Error when running fixmyjs:", e));
         }
         return callback();
       }.bind(this);
