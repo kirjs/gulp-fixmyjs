@@ -3,10 +3,13 @@
   "version": "0.0.9",
   "description": "fixmyjs plugin for gulp",
   "keywords": [
+    "fix",
     "gulpplugin",
     "fixmyjs",
     "jshint",
-    "linting"
+    "linting",
+    "js",
+    "lint"
   ],
   "author": {
     "name": "Kirill Cherkashin",
@@ -22,9 +25,9 @@
     "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && istanbul-coveralls"
   },
   "dependencies": {
-    "fixmyjs": "~0.13.1",
+    "fixmyjs": "*",
     "gulp-util": "^3.0.1",
-    "jshint": "~2.5.0",
+    "jshint": "~2.6.3",
     "rcloader": "~0.1.2",
     "through2": "*"
   },
