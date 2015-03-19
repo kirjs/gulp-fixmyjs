@@ -59,7 +59,7 @@ module.exports = function (options) {
           file.contents = new Buffer(fixJS(String(file.contents), config));
           this.push(file);
         } catch (e) {
-          this.emit("error", error("Error when running fixmyjs:", e));
+          this.emit("error", error("Error when running fixmyjs:\n" + e.stack));
         }
         return callback();
       }.bind(this);
