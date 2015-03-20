@@ -28,7 +28,7 @@
     "fixmyjs": "*",
     "gulp-util": "^3.0.1",
     "jshint": "~2.6.3",
-    "rcloader": "~0.1.2",
+    "rcloader": "~0.1.4",
     "through2": "*"
   },
   "devDependencies": {
