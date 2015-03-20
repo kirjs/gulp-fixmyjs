@@ -55,11 +55,15 @@ module.exports = function (options) {
 
     if (file.isBuffer()) {
       var fix = function (err, config) {
-        try {
-          file.contents = new Buffer(fixJS(String(file.contents), config));
-          this.push(file);
-        } catch (e) {
-          this.emit("error", error("Error when running fixmyjs:\n" + e.stack));
+        if (err) {
+          this.emit("error", error("Error when reading .jshint config:\n" + err));
+        } else {
+          try {
+            file.contents = new Buffer(fixJS(String(file.contents), config));
+            this.push(file);
+          } catch (e) {
+            this.emit("error", error("Error when running fixmyjs:\n" + e.stack));
+          }
         }
         return callback();
       }.bind(this);
