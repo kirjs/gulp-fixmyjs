@@ -36,7 +36,7 @@
     "event-stream": "*",
     "istanbul": "*",
     "istanbul-coveralls": "^1.0.1",
-    "mocha": "*",
+    "mocha": "2.5.0",
     "mocha-lcov-reporter": "*",
     "should": "^11.1.0"
   },
